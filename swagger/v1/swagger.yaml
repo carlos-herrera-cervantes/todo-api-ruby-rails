@@ -1,0 +1,330 @@
+openapi: 3.0.1
+info:
+  title: To-Do API V1
+  version: v1
+paths:
+  /users:
+    get:
+      tags:
+      - User
+      summary: Returns a list of users
+      operationId: getUser
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+        500:
+          description: Interval Server Error
+          content: {}
+    post:
+      tags:
+      - User
+      summary: Create a new user
+      operationId: createUser
+      requestBody:
+        description: User that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        201:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/ProducesResponseTypeOKUser'
+        400:
+          description: Bad request
+          content: {}
+        500:
+          description: Interval Server Error
+          content: {}
+  /users/{id}:
+    get:
+      tags:
+      - User
+      summary: Returns a specific user
+      operationId: getByIdUser
+      parameters:
+      - name: User ID
+        in: path
+        description: The ID of the user to retrieve
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/ProducesResponseTypeOKUser'
+        404:
+          description: Not found
+          content: {}
+        500:
+          description: Interval Server Error
+          content: {}
+    patch:
+      tags:
+      - User
+      summary: Update a specific user
+      operationId: updateByIdUser
+      parameters:
+      - name: User ID
+        in: path
+        description: The ID of the user to update
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: User that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        201:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/ProducesResponseTypeOKUser'
+        404:
+          description: Not found
+          content: {}
+        500:
+          description: Interval Server Error
+          content: {}
+    delete:
+      tags:
+      - User
+      summary: Delete a specific user
+      operationId: deleteByIdUser
+      parameters:
+      - name: User ID
+        in: path
+        description: The ID of the user to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        204:
+          description: No content
+          content: {}
+        404:
+          description: Not found
+          content: {}
+        500:
+          description: Interval Server Error
+          content: {}
+  /todos:
+    get:
+      tags:
+      - To-Do
+      summary: Returns a list of todos
+      operationId: getTodo
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Todo'
+        500:
+          description: Interval Server Error
+          content: {}
+    post:
+      tags:
+      - To-Do
+      summary: Create a new todo
+      operationId: createTodo
+      requestBody:
+        description: Todo that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Todo'
+      responses:
+        201:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/ProducesResponseTypeOKTodo'
+        400:
+          description: Bad request
+          content: {}
+        500:
+          description: Interval Server Error
+          content: {}
+  /todos/{id}:
+    get:
+      tags:
+      - To-Do
+      summary: Returns a specific todo
+      operationId: getByIdTodo
+      parameters:
+      - name: Todo ID
+        in: path
+        description: The ID of the todo to retrieve
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/ProducesResponseTypeOKTodo'
+        404:
+          description: Not found
+          content: {}
+        500:
+          description: Interval Server Error
+          content: {}
+    patch:
+      tags:
+      - To-Do
+      summary: Update a specific todo
+      operationId: updateByIdTodo
+      parameters:
+      - name: Todo ID
+        in: path
+        description: The ID of the todo to retrieve
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Todo that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Todo'
+      responses:
+        201:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/ProducesResponseTypeOKTodo'
+        404:
+          description: Not found
+          content: {}
+        500:
+          description: Interval Server Error
+          content: {}
+    delete:
+      tags:
+      - To-Do
+      summary: Delete a specific todo
+      operationId: deleteByIdTodo
+      parameters:
+      - name: Todo ID
+        in: path
+        description: The ID of todo to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        204:
+          description: No content
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+        500:
+          description: Internal Server Error
+          content: {}
+definitions:
+  ProducesResponseTypeOKUser:
+    type: object
+    properties:
+      status:
+        type: boolean
+        description: Status of operation
+      data:
+        type: object
+        description: User object
+    example:
+      status: true
+      data:
+        id: 5f4c9fbdcea374dd0b1cffe2
+        email: user@example.com
+        name: Carlos
+        last_name: Herrera
+  ProducesResponseTypeOKTodo:
+    type: object
+    properties:
+      status:
+        type: boolean
+        description: Status of operation
+      data:
+        type: object
+        description: To-Do object
+    example:
+      status: true
+      data:
+        id: 5f4c9fbdcea374dd0b1cffe2
+        title: Test title
+        body: Test body
+        done: true
+components:
+  schemas:
+    User:
+      required:
+        - email
+        - name
+        - last_name
+      type: object
+      properties:
+        id:
+          type: string
+          description: User ID
+        email:
+          type: string
+          description: User email
+        name:
+          type: string
+          description: User name
+        last_name:
+          type: string
+          description: User last name
+    Todo:
+      required:
+        - title
+        - body
+      properties:
+        id:
+          type: string
+          description: To-Do ID
+        title:
+          type: string
+          description: To-Do title
+        body:
+          type: string
+          description: To-Do body
+        done:
+          type: boolean
+          description: Status of To-Do
+servers:
+- url: http://localhost:3000

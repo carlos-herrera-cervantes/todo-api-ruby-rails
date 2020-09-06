@@ -1,0 +1,9 @@
+# Ignore bundler config.
+/.bundle
+.DS_Store
+.env
+/tmp
+/public
+/log
+.byebug_history
+/config/master.key
