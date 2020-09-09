@@ -1,6 +1,6 @@
 class TodosManager
 
-  def create (todo)
+  def create(todo)
     created = Todo.new(todo)
 
     if created.save
@@ -8,7 +8,7 @@ class TodosManager
     end
   end
 
-  def update (id, todo)
+  def update(id, todo)
     finded = Todo.find(id)
     
     if finded.update(todo)
@@ -16,7 +16,7 @@ class TodosManager
     end
   end
 
-  def delete (id)
+  def delete(id)
     todo = Todo.find(id)
     todo.destroy
   end

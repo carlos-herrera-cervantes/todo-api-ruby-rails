@@ -1,6 +1,6 @@
 class UsersManager
 
-  def create (user)
+  def create(user)
     created = User.new(user)
 
     if created.save
@@ -8,7 +8,7 @@ class UsersManager
     end
   end
 
-  def update (id, user)
+  def update(id, user)
     finded = User.find(id)
     
     if finded.update(user)
@@ -16,7 +16,7 @@ class UsersManager
     end
   end
 
-  def delete (id)
+  def delete(id)
     user = User.find(id)
     user.destroy
   end

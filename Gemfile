@@ -8,6 +8,9 @@ gem 'puma', '~> 4.1'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'mongoid', '~> 7.0.5'
 gem 'dotenv-rails'
+gem 'jwt'
+gem 'bcrypt'
+gem 'cancancan'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

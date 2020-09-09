@@ -1,3 +1,6 @@
 es:
   TodoNotFound: "No se encontró el documento"
   UserNotFound: "No se encontró el usuario"
+  Unauthorized: "No tienes permisos para realizar esta acción"
+  InvalidCredentials: "Las credenciales de usuario son incorrectas"
+  InvalidToken: "El token no es válido"

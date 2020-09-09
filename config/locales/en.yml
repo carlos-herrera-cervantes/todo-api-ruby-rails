@@ -1,3 +1,6 @@
 en:
   TodoNotFound: "Document was not found"
   UserNotFound: "User was not found"
+  Unauthorized: "You don't have permissions to do this action"
+  InvalidCredentials: "The user credentials are wrong"
+  InvalidToken: "The token is not invalid"

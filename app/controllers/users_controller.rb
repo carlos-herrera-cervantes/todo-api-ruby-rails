@@ -1,12 +1,13 @@
-require_relative '../modules/users_module.rb'
-
 class UsersController < ApplicationController
+  before_action :authorize_request, except: :create
   before_action :set_user, only: [:show, :update, :destroy]
+
+  load_and_authorize_resource except: :create
 
   attr_reader :user_repository
   attr_reader :user_manager
 
-  def initialize (user_repository = UsersRepository.new, user_manager = UsersManager.new)
+  def initialize(user_repository = UsersRepository.new, user_manager = UsersManager.new)
     @user_repository = user_repository
     @user_manager = user_manager
   end
@@ -46,7 +47,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :name, :last_name)
+    params.require(:user).permit(:email, :name, :last_name, :role, :password)
   end
 
 end

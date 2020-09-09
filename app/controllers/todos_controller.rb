@@ -1,22 +1,22 @@
-require_relative '../modules/todos_module.rb'
-require_relative '../modules/users_module.rb'
-
 class TodosController < ApplicationController
+  before_action :authorize_request, except: :create
   before_action :set_todo, only: [:show, :update, :destroy]
   before_action :set_user, only: [:create_by_user]
+
+  load_and_authorize_resource except: :create
 
   attr_reader :todo_repository
   attr_reader :todo_manager
   attr_reader :user_repository
 
-  def initialize (todo_repository = TodosRepository.new, todo_manager = TodosManager.new, user_repository = UsersRepository.new)
+  def initialize(todo_repository = TodosRepository.new, todo_manager = TodosManager.new, user_repository = UsersRepository.new)
     @todo_repository = todo_repository
     @todo_manager = todo_manager
     @user_repository = user_repository
   end
 
   def index
-    todos = todo_repository.get_all
+    todos = todo_repository.get_all(request.query_parameters)
     render json: { status: true, data: todos }
   end
 
